@@ -1,1 +1,0 @@
-Arquivo único index.html. Cadastro/login local; não é autenticação real. Jogos recreativos sem dinheiro. Pix são códigos de transferência direta e não integram depósitos/conta/saques.
