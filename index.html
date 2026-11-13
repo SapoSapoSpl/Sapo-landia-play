@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPL.GOOV | Sapo-landia Play</title>
+  <meta name="theme-color" content="#07110d">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="logo" href="#" onclick="navigate('home')">
+    🐸 <span>SPL.GOOV</span>
+  </a>
+
+  <nav>
+    <button onclick="navigate('home')">Jogos</button>
+    <button onclick="navigate('deposit')">Pix</button>
+    <button onclick="navigate('withdraw')">Saque</button>
+    <button onclick="navigate('account')">Conta</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section id="home" class="page active">
+  <div class="hero">
+    <div>
+      <span class="tag">SAPO-LANDIA PLAY</span>
+      <h1>Entre no universo<br><span>SPL.GOOV</span></h1>
+      <p>Jogos, diversão e novas aventuras.</p>
+    </div>
+
+    <div class="balance-box">
+      <small>Créditos de entretenimento</small>
+      <strong id="balance">30,00</strong>
+      <button class="btn small" onclick="navigate('account')">Minha conta</button>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <h2>🎮 Jogos</h2>
+    <span>Escolha sua aventura</span>
+  </div>
+
+  <div class="games">
+    <article class="game-card">
+      <div class="game-art tiger">🐯💎🍀</div>
+      <h3>Tigre da Sorte</h3>
+      <p>3 colunas • 9 símbolos • Respin</p>
+      <button class="btn" onclick="openGame('tiger')">JOGAR</button>
+    </article>
+
+    <article class="game-card">
+      <div class="game-art frog">🐸🪙⭐</div>
+      <h3>Sapo Dourado</h3>
+      <p>Combinações e símbolos especiais</p>
+      <button class="btn" onclick="openGame('frog')">JOGAR</button>
+    </article>
+
+    <article class="game-card">
+      <div class="game-art island">🌴💰🌊</div>
+      <h3>Ilha das Moedas</h3>
+      <p>Descubra combinações na ilha</p>
+      <button class="btn" onclick="openGame('island')">JOGAR</button>
+    </article>
+  </div>
+</section>
+
+<!-- JOGO -->
+<section id="game" class="page">
+  <div class="game-header">
+    <button class="btn secondary" onclick="navigate('home')">← VOLTAR</button>
+    <h2 id="gameTitle">🐯 Tigre da Sorte</h2>
+  </div>
+
+  <div class="slot-panel">
+    <div class="slot-grid" id="slotGrid"></div>
+    <div class="win-message" id="winMessage">Boa sorte!</div>
+  </div>
+
+  <div class="controls">
+    <label>
+      Aposta
+      <select id="bet">
+        <option value="1">1 crédito</option>
+        <option value="2">2 créditos</option>
+        <option value="5">5 créditos</option>
+        <option value="10">10 créditos</option>
+      </select>
+    </label>
+
+    <button class="btn spin-button" id="spinButton" onclick="spin()">GIRAR</button>
+    <button class="btn secondary" id="turboButton" onclick="toggleTurbo()">TURBO OFF</button>
+  </div>
+
+  <div class="panel">
+    <h3>🏆 Tabela de combinações</h3>
+    <table class="paytable">
+      <thead>
+        <tr><th>Símbolo</th><th>3 iguais</th><th>2 iguais</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>🐯</td><td>12×</td><td>2×</td></tr>
+        <tr><td>💎</td><td>8×</td><td>1,5×</td></tr>
+        <tr><td>🍀</td><td>6×</td><td>1×</td></tr>
+        <tr><td>🪙</td><td>4×</td><td>0,8×</td></tr>
+        <tr><td>🐸</td><td>3×</td><td>0,5×</td></tr>
+        <tr><td>🍊</td><td>2×</td><td>0,3×</td></tr>
+        <tr><td>⭐</td><td>1,5×</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PIX -->
+<section id="deposit" class="page">
+  <div class="panel">
+    <h2>💳 Pix</h2>
+    <p>Escolha um valor para consultar o código Pix.</p>
+
+    <div class="pix-values">
+      <button onclick="selectPix(10)">R$ 10</button>
+      <button onclick="selectPix(20)">R$ 20</button>
+      <button onclick="selectPix(30)">R$ 30</button>
+      <button onclick="selectPix(40)">R$ 40</button>
+      <button onclick="selectPix(50)">R$ 50</button>
+      <button onclick="selectPix(60)">R$ 60</button>
+      <button onclick="selectPix(70)">R$ 70</button>
+      <button onclick="selectPix(80)">R$ 80</button>
+      <button onclick="selectPix(90)">R$ 90</button>
+      <button onclick="selectPix(100)">R$ 100</button>
+    </div>
+  </div>
+
+  <div class="panel" id="pixPanel" hidden>
+    <h3 id="pixTitle">Pix selecionado</h3>
+    <textarea id="pixCode" readonly></textarea>
+    <button class="btn" onclick="copyPix()">COPIAR PIX</button>
+    <p id="pixFeedback"></p>
+    <button class="btn secondary" onclick="backPix()">← VOLTAR AOS VALORES</button>
+  </div>
+
+  <div class="notice">
+    Esta página não confirma pagamentos nem adiciona créditos automaticamente.
+    Não envie pagamentos esperando crédito automático neste site.
+  </div>
+</section>
+
+<!-- SAQUE -->
+<section id="withdraw" class="page">
+  <div class="panel">
+    <h2>🏦 Saques</h2>
+    <div class="notice">
+      Esta página não realiza transferências bancárias ou saques.
+    </div>
+  </div>
+</section>
+
+<!-- CONTA -->
+<section id="account" class="page">
+  <div class="panel">
+    <h2>👤 Minha conta</h2>
+
+    <form id="accountForm">
+      <label>Nome
+        <input id="userName" type="text" required>
+      </label>
+
+      <label>E-mail
+        <input id="userEmail" type="email" required>
+      </label>
+
+      <button class="btn">SALVAR</button>
+    </form>
+
+    <p id="accountFeedback"></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <strong>SPL.GOOV</strong> • SAPO-LANDIA PLAY
+  <p>Entretenimento digital</p>
+</footer>
+
+<script src="assets/js/app.js"></script>
+</body>
+                                      </html>
+                                      
